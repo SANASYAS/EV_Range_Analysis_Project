@@ -113,7 +113,7 @@ from django.shortcuts import render
 from sklearn.preprocessing import OneHotEncoder
 
 # Load the pre-trained model
-with open('users/models/linear_model.pkl', 'rb') as file:
+with open('users/models/linear_model1.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Define categories for one-hot encoding (replace with actual categories you used)
@@ -148,7 +148,7 @@ def predict_range(request):
 
 
 # Load the pre-trained model
-with open('users/models/linear_model.pkl', 'rb') as file:
+with open('users/models/linear_model1.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Define categories for one-hot encoding (replace with actual categories you used)
