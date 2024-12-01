@@ -1,41 +1,12 @@
-# from django.shortcuts import render, redirect
-# from django.contrib import messages
-# from .forms import UserRegistrationForm
 from django.shortcuts import render
 import pandas as pd
-
 from django.shortcuts import redirect
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserRegistrationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             messages.success(request, f'Account created for {username}!')
-#             return redirect('login')  # Redirect to a login page or another page
-#     else:
-#         form = UserRegistrationForm()
-#     return render(request, 'users/register.html', {'form': form})
-
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
-#from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import User
 from .forms import UserLoginForm
 from django.contrib.auth import authenticate, login as auth_login
 
-
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserRegistrationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             return redirect('success_url')  # This should now work correctly
-#     else:
-#         form = UserRegistrationForm()
-    
-#     return render(request, 'users/register.html', {'form': form})
 def home_view(request):
     return render(request,'users/home_page.html')
 
@@ -54,11 +25,8 @@ def register(request):
     
     return render(request, 'users/register.html', {'form': form})
 
-
 def success_view(request):
     return render(request, 'users/success.html')  # Create a success.html template
-
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -82,8 +50,6 @@ def login_view(request):
 
     return render(request, 'users/login.html', {'form': form})
 
-
-
 def fleet_manager_home_view(request):
     # Logic for the fleet manager's home page
     return render(request, 'users/fleet_manager_home.html')
@@ -91,8 +57,6 @@ def fleet_manager_home_view(request):
 def driver_home_view(request):
     # Logic for the driver's home page
     return render(request, 'users/driver_home.html')
-
-
 
 from django.shortcuts import render
 
@@ -114,37 +78,6 @@ def vehicle_status(request):
 def prediction_view(request):
     return render(request, 'users/prediction.html')  # Adjust as needed
 
-
-
-
-# def distribution_view(request):
-#     return render(request, 'users/distribution.html')
-
-
-def redirect_to_distribution(request):
-    return redirect('http://127.0.0.1:5000/')  # Redirect to Flask app running on port 5000
-# import pandas as pd
-# from django.shortcuts import render
-
-# def vehicle_status(request):
-#     # Load the dataset
-#     df = pd.read_csv('Datasets/EV_Synthetic_Data.csv')  # Adjust the path to your CSV file
-    
-#     # Check if 'Status' column exists
-#     if 'Status' not in df.columns:
-#         return render(request, 'users/vehicle_status.html', {'error': "'Status' column not found in the dataset."})
-
-#     # Count the occurrences of each status
-#     status_counts = df['vehicle_status'].value_counts()
-
-#     # Prepare the data for the bar chart
-#     data = {
-#         'labels': ['No', 'Yes'],  # Assume 0 -> 'No' and 1 -> 'Yes'
-#         'values': [status_counts.get(0, 0), status_counts.get(1, 0)]  # Default to 0 if not found
-#     }
-
-#     # Pass the data to the template
-#     return render(request, 'users/vehicle_status.html', {'data': data})
 import pandas as pd
 from django.shortcuts import render
 
@@ -169,16 +102,9 @@ def vehicle_status(request):
     return render(request, 'users/vehicle_status.html', {'data': data})
 
 from django.shortcuts import redirect
-
 def relationship_view(request):
-    # Redirect to the Gradio app running on localhost:7860
-    return redirect("http://127.0.0.1:8502/")
-
-
-# def predict_electric_range(request):
-#     # Redirect to the Gradio app running on localhost:7860
-#     return ("http://127.0.0.1:8503/")
-
+    # Replace with the correct address for Streamlit
+    return redirect("http://127.0.0.1:8501/")
 
 
 import pickle
@@ -220,15 +146,6 @@ def predict_range(request):
 
     return render(request, 'users/predict_range.html')
 
-
-
-
-
-
-import pickle
-import numpy as np
-from django.shortcuts import render
-from sklearn.preprocessing import OneHotEncoder
 
 # Load the pre-trained model
 with open('users/models/linear_model.pkl', 'rb') as file:
